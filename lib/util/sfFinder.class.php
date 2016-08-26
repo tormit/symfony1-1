@@ -665,7 +665,9 @@ class sfGlobToRegex
         $first_byte = true;
       }
 
-      if ($car === '.' || $car === '(' || $car === ')' || $car === '|' || $car === '+' || $car === '^' || $car === '$')
+      // Escaped hashtag symbol, because it would conflict with pattern delimiter
+      // tormit - 19th December 2013.
+      if ($car === '.' || $car === '(' || $car === ')' || $car === '|' || $car === '+' || $car === '^' || $car === '$' || $car === "#")
       {
         $regex .= "\\$car";
       }
