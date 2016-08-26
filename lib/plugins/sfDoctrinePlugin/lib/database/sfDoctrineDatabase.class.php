@@ -99,6 +99,8 @@ class sfDoctrineDatabase extends sfDatabase
     {
       $this->profiler = new sfDoctrineConnectionProfiler($dispatcher, array(
         'logging' => $this->getParameter('logging', sfConfig::get('sf_logging_enabled')),
+        'query_backtrace' => sfConfig::get('sf_query_backtrace', false),
+        'query_backtrace_full' => sfConfig::get('sf_query_backtrace_full', false),
       ));
       $this->_doctrineConnection->addListener($this->profiler, 'symfony_profiler');
     }
