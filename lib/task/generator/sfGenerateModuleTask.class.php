@@ -17,6 +17,8 @@ require_once(__DIR__.'/sfGeneratorBaseTask.class.php');
  * @subpackage task
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
  * @version    SVN: $Id$
+ *
+ * UPDATE 2014-02-03 Tormi Talv <tormit@gmail.com> - Added components skeleton
  */
 class sfGenerateModuleTask extends sfGeneratorBaseTask
 {
@@ -28,6 +30,7 @@ class sfGenerateModuleTask extends sfGeneratorBaseTask
     $this->addArguments(array(
       new sfCommandArgument('application', sfCommandArgument::REQUIRED, 'The application name'),
       new sfCommandArgument('module', sfCommandArgument::REQUIRED, 'The module name'),
+      new sfCommandArgument('component_action', sfCommandArgument::OPTIONAL, 'The component default action', 'Default'),
     ));
 
     $this->namespace = 'generate';
@@ -67,6 +70,7 @@ EOF;
   {
     $app    = $arguments['application'];
     $module = $arguments['module'];
+    $componentAction = $arguments['component_action'];
 
     // Validate the module name
     if (!preg_match('/^[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*$/', $module))
@@ -88,6 +92,7 @@ EOF;
       'APP_NAME'     => $app,
       'MODULE_NAME'  => $module,
       'AUTHOR_NAME'  => isset($properties['symfony']['author']) ? $properties['symfony']['author'] : 'Your name here',
+      'COMPONENT_ACTION' => ucfirst(trim($componentAction)),
     );
 
     if (is_readable(sfConfig::get('sf_data_dir').'/skeleton/module'))
@@ -102,6 +107,12 @@ EOF;
     // create basic application structure
     $finder = sfFinder::type('any')->discard('.sf');
     $this->getFilesystem()->mirror($skeletonDir.'/module', $moduleDir, $finder);
+
+    // make component template
+    file_put_contents(
+        $moduleDir . DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR . '_' . lcfirst($componentAction) . '.php',
+        '"' . $componentAction . '" component action content'
+    );
 
     // create basic test
     $this->getFilesystem()->copy($skeletonDir.'/test/actionsTest.php', sfConfig::get('sf_test_dir').'/functional/'.$app.'/'.$module.'ActionsTest.php');
