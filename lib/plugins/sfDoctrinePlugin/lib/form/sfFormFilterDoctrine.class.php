@@ -282,6 +282,39 @@ abstract class sfFormFilterDoctrine extends sfFormFilter
   }
 
   /**
+   * Use this in your addXxxxxDateQuery() methods.
+   *
+   * @param Doctrine_Query $query
+   * @param string $field Filter input field
+   * @param string $values Filter input value
+   * @param string $alias Relation alias for this field
+   * @param string $fieldName Table column name
+   *
+   * Example:
+   * public function addBirthdayColumnQuery(Doctrine_Query $query, $field, $values)
+   * {
+   *  if ($values) {
+   *    $this->abstractAddDateQuery($query, $field, $values, $query->getRootAlias(), 'birthday');
+   *  }
+   * }
+   */
+  protected function abstractAddDateQuery(Doctrine_Query $query, $field, $values, $alias, $fieldName)
+  {
+    if (isset($values['is_empty']) && $values['is_empty']) {
+      $query->addWhere(sprintf('%s.%s IS NULL', $alias, $fieldName));
+    } else {
+      if (null !== $values['from'] && null !== $values['to']) {
+        $query->andWhere(sprintf('%s.%s >= ?', $alias, $fieldName), $values['from']);
+        $query->andWhere(sprintf('%s.%s <= ?', $alias, $fieldName), $values['to']);
+      } else if (null !== $values['from']) {
+        $query->andWhere(sprintf('%s.%s >= ?', $alias, $fieldName), $values['from']);
+      } else if (null !== $values['to']) {
+        $query->andWhere(sprintf('%s.%s <= ?', $alias, $fieldName), $values['to']);
+      }
+    }
+  }
+
+  /**
    * Used in generated forms when models use inheritance.
    */
   protected function setupInheritance()
