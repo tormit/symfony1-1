@@ -296,19 +296,29 @@ class sfException extends Exception
     $traces = array();
     if ($format == 'html')
     {
-      $lineFormat = 'at <strong>%s%s%s</strong>(%s)<br />in <em>%s</em> line %s <a href="#" onclick="toggle(\'%s\'); return false;">...</a><br /><ul class="code" id="%s" style="display: %s">%s</ul>';
+      $lineFormat = '<span style="color: %s">at <strong>%s%s%s</strong>(%s)</span><br />in <em>%s</em> line %s <a href="#" onclick="toggle(\'%s\'); return false;">...</a><br /><ul class="code" id="%s" style="display: %s">%s</ul>';
     }
     else
     {
-      $lineFormat = 'at %s%s%s(%s) in %s line %s';
+      $lineFormat = '%sat %s%s%s(%s) in %s line %s';
     }
 
+    $sfLibDir = sfConfig::get('sf_symfony_lib_dir');
     for ($i = 0, $count = count($traceData); $i < $count; $i++)
     {
       $line = isset($traceData[$i]['line']) ? $traceData[$i]['line'] : null;
       $file = isset($traceData[$i]['file']) ? $traceData[$i]['file'] : null;
       $args = isset($traceData[$i]['args']) ? $traceData[$i]['args'] : array();
+
+      // highlighting
+      if ($format == 'html') {
+        $color = stripos((string)$file, $sfLibDir) === 0 ? 'black' : 'red';
+      } else {
+        $color = stripos((string)$file, $sfLibDir) === 0 ? '' : '!!! ';
+      }
+
       $traces[] = sprintf($lineFormat,
+        $color,
         (isset($traceData[$i]['class']) ? $traceData[$i]['class'] : ''),
         (isset($traceData[$i]['type']) ? $traceData[$i]['type'] : ''),
         $traceData[$i]['function'],
