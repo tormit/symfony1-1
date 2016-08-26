@@ -75,7 +75,7 @@ abstract class sfFormFilterDoctrine extends sfFormFilter
   /**
    * Returns a Doctrine Query based on the current values form the form.
    *
-   * @return Query A Doctrine Query object
+   * @return Doctrine_Query A Doctrine Query object
    */
   public function getQuery()
   {
