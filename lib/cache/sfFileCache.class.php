@@ -151,7 +151,9 @@ class sfFileCache extends sfCache
     {
       if (sfCache::ALL == $mode || !$this->isValid($file))
       {
-        $result = @unlink($file) && $result;
+        if ($file != '.' && $file != '..' && is_writable($file)) {
+          $result = @unlink($file) && $result;
+        }
       }
     }
 
