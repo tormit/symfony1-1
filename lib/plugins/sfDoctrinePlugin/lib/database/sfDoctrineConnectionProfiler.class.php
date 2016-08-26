@@ -249,7 +249,7 @@ class sfDoctrineConnectionProfiler extends Doctrine_Connection_Profiler
   {
     $rootDir = sfConfig::get('sf_root_dir');
 
-    if ($this->options['query_backtrace']) {
+    if (isset($this->options['query_backtrace']) && $this->options['query_backtrace']) {
       $backtraceString = '';
       $appTrace = debug_backtrace();
 
