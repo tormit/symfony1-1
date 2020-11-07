@@ -7,6 +7,8 @@ This fork contains some updates that were made for Symfony 1 long time ago.
 
 Nothing backward incompatible.
 
+**Use version ^1.6 in composer.json**
+
 UPDATES
 --------
 
