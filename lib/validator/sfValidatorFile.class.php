@@ -263,7 +263,9 @@ class sfValidatorFile extends sfValidatorBase
   {
     ob_start();
     //need to use --mime instead of -i. see #6641
-    passthru(sprintf('file -b --mime %s 2>/dev/null', escapeshellarg($file)), $return);
+    $cmd = 'file -b --mime -- %s 2>/dev/null';
+    $file = (0 === strpos($file, '-') ? './' : '').$file;
+    passthru(sprintf($cmd, escapeshellarg($file)), $return);
     if ($return > 0)
     {
       ob_end_clean();
@@ -320,16 +322,17 @@ class sfValidatorFile extends sfValidatorBase
       return PHP_INT_MAX;
     }
 
+    $value = (int) $max;
     switch (strtolower(substr($max, -1)))
     {
       case 'g':
-        $max *= 1024;
+        $value *= 1024;
       case 'm':
-        $max *= 1024;
+        $value *= 1024;
       case 'k':
-        $max *= 1024;
+        $value *= 1024;
     }
 
-    return (integer) $max;
+    return (integer) $value;
   }
 }
