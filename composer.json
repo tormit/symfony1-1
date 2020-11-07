@@ -14,7 +14,7 @@
         "files": ["autoload.php"]
     },
     "suggest": {
-        "friendsofsymfony1/doctrine1": "Doctrine plugin",
+        "friendsofsymfony1/doctrine1": "Doctrine plugin. Use ^1.4 versions.",
         "propel/sf-propel-o-r-m-plugin": "Propel plugin",
         "psr/log": "Psr logger"
     },

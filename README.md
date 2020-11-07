@@ -13,6 +13,9 @@ UPDATES
 --------
 
 #### 6th November 2014
+
+
+#### 6th November 2014
 * New options in settings.yml
     * query_backtrace - Enables query backtrace
     * query_backtrace_full - Backtrace includes symfony core.
@@ -28,8 +31,12 @@ Can be used in your custom date filters in _addXxxxxDateQuery()_ methods.
 
 
 #### 16th November 2015
+
+In tormit/doctrine1_5, friendsofsymfony1/doctrine1 package
 * Updated Doctrine collection. Added _\Doctrine_Collection::filter()_ to filter records by callback.
 
+### Doctrine updates 
+https://github.com/tormit/doctrine1_5/blob/master/README.md
 
 
 FriendsOfSymfony1 README
