@@ -31,6 +31,11 @@ abstract class sfTask
   protected $formatter = null;
 
   /**
+   * @var static
+   */
+  public static $currentlyRunningTask = null;
+
+  /**
    * Constructor.
    *
    * @param sfEventDispatcher $dispatcher  An sfEventDispatcher instance
@@ -361,6 +366,7 @@ abstract class sfTask
 
   protected function process(sfCommandManager $commandManager, $options)
   {
+    self::$currentlyRunningTask = $this;
     $commandManager->process($options);
     if (!$commandManager->isValid())
     {
