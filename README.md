@@ -12,8 +12,13 @@ Nothing backward incompatible.
 UPDATES
 --------
 
-#### 6th November 2014
+#### 17th December 2013
 
+* Cache clean fix (prevent unlink errors)
+
+#### 19th December 2013
+
+* sfFinder glob_to_regex escape fix
 
 #### 6th November 2014
 * New options in settings.yml
