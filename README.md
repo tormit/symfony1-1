@@ -40,6 +40,12 @@ Can be used in your custom date filters in _addXxxxxDateQuery()_ methods.
 In tormit/doctrine1_5, friendsofsymfony1/doctrine1 package
 * Updated Doctrine collection. Added _\Doctrine_Collection::filter()_ to filter records by callback.
 
+
+#### 22nd November 2020
+
+* \sfTask::$currentlyRunningTask (for use in Doctrine plugin for output)
+
+
 ### Doctrine updates 
 https://github.com/tormit/doctrine1_5/blob/master/README.md
 
