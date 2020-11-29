@@ -83,7 +83,7 @@ abstract class sfMessageSource implements sfIMessageSource
 
   /**
    * The translation cache.
-   * @var sfMessageCache
+   * @var \sfCache
    */
   protected $cache;
 
@@ -93,9 +93,9 @@ abstract class sfMessageSource implements sfIMessageSource
    * Private constructor. sfMessageSource must be initialized using
    * the factory method.
    */
-  private function __construct()
+  protected function __construct()
   {
-    //throw new sfException('Please use the factory method to instantiate.');
+
   }
 
   /**

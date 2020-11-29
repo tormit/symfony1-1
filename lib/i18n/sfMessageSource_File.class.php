@@ -42,7 +42,7 @@ abstract class sfMessageSource_File extends sfMessageSource
    * @param string $source the directory where the messages are stored.
    * @see MessageSource::factory();
    */
-  function __construct($source)
+  protected function __construct($source)
   {
     $this->source = (string) $source;
   }

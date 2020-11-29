@@ -99,7 +99,7 @@ class sfMessageSource_SQLite extends sfMessageSource_Database
    * @see MessageSource::factory();
    * @param string $source SQLite datasource, in PEAR's DB DSN format.
    */
-  function __construct($source)
+  protected function __construct($source)
   {
     $dsn = $this->parseDSN((string) $source);
     $this->source = $dsn['database'];

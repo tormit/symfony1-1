@@ -16,7 +16,8 @@
     "suggest": {
         "friendsofsymfony1/doctrine1": "Doctrine plugin. Use ^1.4 versions.",
         "propel/sf-propel-o-r-m-plugin": "Propel plugin",
-        "psr/log": "Psr logger"
+        "psr/log": "Psr logger",
+        "ext-mysqli": "For retrieving the message translations from a MySQL database."
     },
     "extra": {
         "branch-alias": {

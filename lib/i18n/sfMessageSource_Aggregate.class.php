@@ -31,7 +31,7 @@ class sfMessageSource_Aggregate extends sfMessageSource
    *
    * @see   MessageSource::factory();
    */
-  function __construct($messageSources)
+  protected function __construct($messageSources)
   {
     $this->messageSources = $messageSources;
   }
